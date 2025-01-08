@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import Navbar from "@/components/navbar";
 import "./globals.css";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Axians Institute",
@@ -31,9 +32,7 @@ export default async function RootLayout({
             <div className='flex-1'>
               {children}
             </div>
-            <div className='py-5'>
-              <h1>footer</h1>
-            </div>
+            <Footer />
           </main>
         </NextIntlClientProvider>
       </body>

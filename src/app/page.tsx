@@ -1,3 +1,4 @@
+import Contacts from "@/features/home/contacts";
 import LatestCourses from "@/features/home/courses";
 import HeroSection from "@/features/home/hero-section";
 import MapSection from "@/features/home/svg-map";
@@ -8,6 +9,7 @@ export default function HomePage() {
       <HeroSection />
       <MapSection />
       <LatestCourses />
+      <Contacts />
     </div>
   );
 }

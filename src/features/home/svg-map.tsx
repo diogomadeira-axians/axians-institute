@@ -122,7 +122,7 @@ export default function MapSection() {
       className='hidden sm:block'
     >
 
-      <div className='relative -mt-40 z-0'>
+      <div className='relative -mt-40 -mb-64 z-0'>
         <div className="z-10 absolute w-full mt-40 space-y-4">
 
           <div className="flex gap-2 items-center">

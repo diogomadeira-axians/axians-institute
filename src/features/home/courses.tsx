@@ -5,7 +5,7 @@ import { AiFillInfoCircle } from "react-icons/ai";
 export default function LatestCourses() {
 
     return (
-        <section className="z-10 relative space-y-4" style={{ marginTop: '-16rem !important' }}>
+        <section className="z-10 relative space-y-4">
             <div className="flex gap-2 items-center">
                 <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
                     <AiFillInfoCircle aria-hidden='true' size={18} className="text-brand-primary-dark" />

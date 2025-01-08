@@ -115,7 +115,7 @@ body {
       group-hover:bg-brand-secondary-light;
   }
 
-  .h1 {
+  .h2 {
     @apply text-2xl font-vinci-sans-regular text-brand-primary-dark;
   }
 }

@@ -27,7 +27,7 @@ const coursesTypes = ({
                 <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
                     <MdComputer aria-hidden='true' size={18} className="text-brand-primary-dark" />
                 </div>
-                <h1 className="h1">{title}</h1>
+                <h2 className="h2">{title}</h2>
             </div>
             <Card className="bg-background border">
                 <CardContent>
@@ -53,7 +53,7 @@ export default function HeroSection() {
             <div className="flex justify-between">
                 <div className="space-y-8">
                     <div>
-                        <span className="font-tahu text-5xl text-brand-secondary-main">{t("heroSection.improveYourself")}</span>
+                        <h1 className="font-tahu text-5xl text-brand-secondary-main">{t("heroSection.improveYourself")}</h1>
                     </div>
                     <p>{t("heroSection.description")}</p>
                     <p className="font-vinci-sans-medium">{t("heroSection.goals")}</p>

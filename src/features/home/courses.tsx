@@ -10,7 +10,7 @@ export default function LatestCourses() {
                 <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
                     <AiFillInfoCircle aria-hidden='true' size={18} className="text-brand-primary-dark" />
                 </div>
-                <h1 className="h1">Our latest courses</h1>
+                <h2 className="h2">Our latest courses</h2>
             </div>
 
             <Carousel
@@ -42,6 +42,11 @@ export default function LatestCourses() {
                 <CarouselPrevious />
                 <CarouselNext />
             </Carousel>
+
+            <div className="flex justify-end">
+                <a href="#" className="font-medium text-brand-primary-main dark:text-brand-primary-dark hover:underline">Access all courses</a>
+
+            </div>
         </section>
     )
 

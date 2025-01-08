@@ -9,7 +9,7 @@ export default function Contacts() {
                 <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
                     <MdGroup aria-hidden='true' size={18} className="text-brand-primary-dark" />
                 </div>
-                <h1 className="h1">Contacts</h1>
+                <h2 className="h2">Contacts</h2>
             </div>
 
             <Card className="bg-background border">

@@ -121,7 +121,6 @@ export default function MapSection() {
     <section
       className='hidden sm:block'
     >
-
       <div className='relative -mt-40 -mb-64 z-0'>
         <div className="z-10 absolute w-full mt-40 space-y-4">
 
@@ -129,7 +128,7 @@ export default function MapSection() {
             <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
               <MdLocationOn aria-hidden='true' size={18} className="text-brand-primary-dark" />
             </div>
-            <h1 className="h1">See our locations and offers</h1>
+            <h2 className="h2">See our locations and offers</h2>
           </div>
 
           <Card className="bg-background border">

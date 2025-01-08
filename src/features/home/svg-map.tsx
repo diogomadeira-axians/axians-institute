@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { MdLocationOn, MdComputer, MdGroup } from 'react-icons/md';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 enum Institutes {
   AIFrance = 'AIFrance',
@@ -76,15 +79,21 @@ export default function MapSection() {
         className='group cursor-pointer'
         onClick={() => handleButtonClick(id)}
       >
-        <button className='chip'>
+        <button className={cn('chip', {
+          'bg-brand-secondary-main text-white group-hover:bg-brand-secondary-main': selectedInstitute && selectedInstitute === id,
+        })}>
           <MdLocationOn aria-hidden='true' size={18} />
           {label}
         </button>
         <div className='mt-2 flex gap-2'>
-          <button className='chip'>
+          <button className={cn('chip', {
+            'bg-brand-secondary-main text-white group-hover:bg-brand-secondary-main': selectedInstitute && selectedInstitute === id,
+          })}>
             <MdGroup aria-hidden='true' size={18} /> 0
           </button>
-          <button className='chip'>
+          <button className={cn('chip', {
+            'bg-brand-secondary-main text-white group-hover:bg-brand-secondary-main': selectedInstitute && selectedInstitute === id,
+          })}>
             <MdComputer aria-hidden='true' size={18} /> 0
           </button>
         </div>
@@ -115,11 +124,17 @@ export default function MapSection() {
 
       <div className='relative -mt-40 z-0'>
         <div className="z-10 absolute w-full mt-40 space-y-4">
-          <h1 className="h1">See our locations and offers</h1>
 
-          <Card className="bg-background">
-            <CardContent>
-              <p className="mb-3">The current locations for Axians Institute are shown in the map bellow, click on the tags to see more information.</p>
+          <div className="flex gap-2 items-center">
+            <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
+              <MdLocationOn aria-hidden='true' size={18} className="text-brand-primary-dark" />
+            </div>
+            <h1 className="h1">See our locations and offers</h1>
+          </div>
+
+          <Card className="bg-background border">
+            <CardContent className="flex flex-wrap justify-between items-center">
+              <p>The current locations for Axians Institute are shown in the map bellow, click on the tags to see more information.</p>
               <a href="#" className="font-medium text-brand-primary-main dark:text-brand-primary-dark hover:underline">Access all courses</a>
             </CardContent>
           </Card>
@@ -127,35 +142,36 @@ export default function MapSection() {
           {selectedInstitute && (
             <div className="mt-6 absolute right-0">
               <Card className="w-96">
-                <CardHeader>
+                <CardHeader className="flex flex-row justify-between items-center">
                   <CardTitle>{selectedInstitute}</CardTitle>
-                  <CardDescription>Card Description</CardDescription>
+                  <Button variant="outline" size="icon" onClick={() => setSelectedInstitute(null)}>
+                    <X className="w-4 h-4" />
+                  </Button>
                 </CardHeader>
                 <CardContent>
                   <p>Card Content</p>
                 </CardContent>
-                <CardFooter>
-                  <p>Card Footer</p>
-                </CardFooter>
               </Card>
             </div>
           )}
         </div>
 
 
-        <Image id='map-svg' className='h-auto w-full z-0' src="map.svg" alt="map" width={0} height={0} sizes="100vw" />
+        <div className="relative">
+          <Image id='map-svg' className='h-auto w-full z-0' src="map.svg" alt="map" width={0} height={0} sizes="100vw" />
+
+          {buttonPositions.map((buttonPosition, index) => (
+            <div
+              key={index}
+              className='absolute z-10'
+              style={{ top: buttonPosition.y, left: buttonPosition.x }}
+            >
+              {instituteSwitch(buttonPosition.id)}
+            </div>
+          ))}
+        </div>
 
 
-
-        {buttonPositions.map((buttonPosition, index) => (
-          <div
-            key={index}
-            className='absolute'
-            style={{ top: buttonPosition.y, left: buttonPosition.x }}
-          >
-            {instituteSwitch(buttonPosition.id)}
-          </div>
-        ))}
 
       </div>
 

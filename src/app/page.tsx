@@ -1,3 +1,4 @@
+import LatestCourses from "@/features/home/courses";
 import HeroSection from "@/features/home/hero-section";
 import MapSection from "@/features/home/svg-map";
 
@@ -6,6 +7,7 @@ export default function HomePage() {
     <div className="container mx-auto py-16 space-y-4">
       <HeroSection />
       <MapSection />
+      <LatestCourses />
     </div>
   );
 }

@@ -33,7 +33,6 @@ export const Navbar = () => {
                 <Button variant="secondary" className="hidden md:block px-2">
                     Login
                 </Button>
-                <Button className="hidden md:block ml-2 mr-2">Get Started</Button>
 
                 <div className="flex md:hidden mr-2 items-center gap-2">
                     <DropdownMenu>

@@ -4,12 +4,9 @@ import { useTranslations } from "next-intl";
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image";
+import { MdComputer } from "react-icons/md";
 
 const coursesTypes = ({
     title,
@@ -26,8 +23,13 @@ const coursesTypes = ({
 }) => {
     return (
         <div className="space-y-4 z-10">
-            <h1 className="h1">{title}</h1>
-            <Card className="bg-background">
+            <div className="flex gap-2 items-center">
+                <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
+                    <MdComputer aria-hidden='true' size={18} className="text-brand-primary-dark" />
+                </div>
+                <h1 className="h1">{title}</h1>
+            </div>
+            <Card className="bg-background border">
                 <CardContent>
                     <div className="flex gap-3">
                         <Image className='h-28 w-28 rounded-sm' src={image} alt={title} width={0} height={0} sizes="100vw" />
@@ -47,7 +49,7 @@ export default function HeroSection() {
     const t = useTranslations("pages.home");
 
     return (
-        <div className="w-full space-y-8">
+        <section className="w-full space-y-8">
             <div className="flex justify-between">
                 <div className="space-y-8">
                     <div>
@@ -68,7 +70,7 @@ export default function HeroSection() {
 
             <div>
                 <span>What you will be able to find here</span>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 mt-6">
                     {coursesTypes({
                         title: "Remote courses",
                         description: "Our remote courses platform connects learners all around the world.​ This collaborative space offers everyone the opportunity to acquire technical basics, improve skills in a certain expertise, strengthen competencies in innovative areas, share local knowledge and even review the security principles specific to Axians' activities.",
@@ -85,6 +87,6 @@ export default function HeroSection() {
                     })}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

@@ -3,13 +3,25 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
 		extend: {
 			colors: {
+				"brand-primary": {
+					lighter: '#DEEBFD',
+					light: '#7FAEDC',
+					main: '#00509E',
+					dark: '#002F5C',
+				},
+				"brand-secondary": {
+					lighter: '#F3DEEB',
+					light: '#F0AED7',
+					main: '#A20067',
+				},
+				"brand-common": {
+					'dark-grey': '#1B1E20',
+				},
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -49,13 +61,19 @@ export default {
 					'3': 'hsl(var(--chart-3))',
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
-				}
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
-			}
+			},
+			fontFamily: {
+				'vinci-sans-light': ['vinci-sans-light', 'serif'],
+				'vinci-sans-regular': ['vinci-sans-regular', 'serif'],
+				'vinci-sans-medium': ['vinci-sans-medium', 'serif'],
+				'tahu': ['tahu'],
+			},
 		}
 	},
 	// eslint-disable-next-line @typescript-eslint/no-require-imports

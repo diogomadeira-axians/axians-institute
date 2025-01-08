@@ -1,25 +1,34 @@
 {
-    "signOut": "Sign out",
-    "languages": {
-        "en": "English",
-        "fr": "French",
-        "de": "German",
-        "pt": "Portuguese"
-    },
-    "navbar": {
-        "home": "Home",
-        "courses": "Courses",
-        "remote": "Remote",
-        "inPerson": "In person",
-        "communicationMaterials": "Communication materials",
-        "contacts": "Contacts"
-    },
-    "institutes": {
-        "fr": "Axians Institute - France",
-        "nl": "Axians Institute - Netherlands",
-        "de": "Axians Institute - Germany",
-        "pt": "Axians Institute - Portugal",
-        "brandTeam": "Axians Institute - Brand team"
-    },
-    "WelcometoReact": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut velit ac arcu finibus dictum non sit amet nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut velit ac arcu finibus dictum non sit amet nisi.  Our goals,The Axians Institute’s ambition is to accompany the evolution of professionals in the field of ICT by capitalizing on the know-how of our 12,000 professionals who make up the Axians network.  "
+  "signOut": "Sign out",
+  "languages": {
+    "en": "English",
+    "fr": "French",
+    "de": "German",
+    "pt": "Portuguese"
+  },
+  "navbar": {
+    "home": "Home",
+    "courses": "Courses",
+    "remote": "Remote",
+    "inPerson": "In person",
+    "communicationMaterials": "Communication materials",
+    "contacts": "Contacts"
+  },
+  "institutes": {
+    "fr": "Axians Institute - France",
+    "nl": "Axians Institute - Netherlands",
+    "de": "Axians Institute - Germany",
+    "pt": "Axians Institute - Portugal",
+    "brandTeam": "Axians Institute - Brand team"
+  },
+  "pages": {
+    "home": {
+      "heroSection": {
+        "improveYourself": "Improve yourself!",
+        "description": "The Axians Institute is an open space dedicated to sharing skills so as to keep you at the highest level. It is also focused on innovation to enable talents to experiment with the new technologies of tomorrow's businesses. Axians Institute delivers general knowledge accompanied by local specificities.",
+        "goals": "Our goals",
+        "goalsDescription": "Axians adopts a practical and concrete approach to transfer knowledge in line with VINCI Energies' values. Training centers, e-learning platforms and learning expeditions... everything is done to ensure that you deepen your expertise and grow as you progress throughout your career at Axians.​"
+      }
+    }
+  }
 }

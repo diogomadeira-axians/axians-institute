@@ -2,13 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'vinci-sans-light';
+  src: local(''),
+    url('../fonts/vinci-sans-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vinci-sans-regular';
+  src: local(''),
+    url('../fonts/vinci-sans-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vinci-sans-medium';
+  src: local(''),
+    url('../fonts/vinci-sans-medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'tahu';
+  src: local(''),
+    url('../fonts/Tahu!.ttf') format('truetype');
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 206 47% 97%; /* #F4F8FB */
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -73,20 +97,21 @@ body {
 
 @layer components {
   .chip {
-    @apply flex 
+    @apply 
+      flex 
       items-center
       justify-center
       gap-1 
       rounded-full
-      /* bg-secondary-lighter */
+      bg-brand-secondary-lighter
       px-3
       py-1
       text-xs
-      /* text-primary-dark  */
+      text-brand-primary-dark
       shadow-md
       transition 
       duration-300
       ease-in-out
-      /* group-hover:bg-secondary-light; */
+      group-hover:bg-brand-secondary-light;
   }
 }

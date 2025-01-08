@@ -1,11 +1,11 @@
+import HeroSection from "@/features/home/hero-section";
 import MapSection from "@/features/home/svg-map";
 
 export default function HomePage() {
-
   return (
-    <>
-      <p>test</p>
-      {/* <MapSection /> */}
-    </>
+    <div>
+      <HeroSection />
+      <MapSection />
+    </div>
   );
 }

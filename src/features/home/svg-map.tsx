@@ -109,7 +109,9 @@ export default function MapSection() {
   };
 
   return (
-    <section className='hidden sm:block'>
+    <section
+    // className='hidden sm:block'
+    >
       <h1 className='text-3xl font-bold underline'>
         See our locations and offers
       </h1>

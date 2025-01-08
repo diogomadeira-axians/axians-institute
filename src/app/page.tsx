@@ -3,7 +3,7 @@ import MapSection from "@/features/home/svg-map";
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="container mx-auto py-16 space-y-4">
       <HeroSection />
       <MapSection />
     </div>

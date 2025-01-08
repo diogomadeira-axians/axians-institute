@@ -110,32 +110,42 @@ export default function MapSection() {
 
   return (
     <section
-    // className='hidden sm:block'
+      className='hidden sm:block'
     >
-      <h1 className='text-3xl font-bold underline'>
-        See our locations and offers
-      </h1>
 
-      <div className='relative'>
+      <div className='relative -mt-40 z-0'>
+        <div className="z-10 absolute w-full mt-40 space-y-4">
+          <h1 className="h1">See our locations and offers</h1>
+
+          <Card className="bg-background">
+            <CardContent>
+              <p className="mb-3">The current locations for Axians Institute are shown in the map bellow, click on the tags to see more information.</p>
+              <a href="#" className="font-medium text-brand-primary-main dark:text-brand-primary-dark hover:underline">Access all courses</a>
+            </CardContent>
+          </Card>
+
+          {selectedInstitute && (
+            <div className="mt-6 absolute right-0">
+              <Card className="w-96">
+                <CardHeader>
+                  <CardTitle>{selectedInstitute}</CardTitle>
+                  <CardDescription>Card Description</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>Card Content</p>
+                </CardContent>
+                <CardFooter>
+                  <p>Card Footer</p>
+                </CardFooter>
+              </Card>
+            </div>
+          )}
+        </div>
+
 
         <Image id='map-svg' className='h-auto w-full z-0' src="map.svg" alt="map" width={0} height={0} sizes="100vw" />
 
-        {selectedInstitute && (
-          <div className="absolute" style={{ top: 64, right: 64 }}>
-            <Card className="min-w-96">
-              <CardHeader>
-                <CardTitle>{selectedInstitute}</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
-          </div>
-        )}
+
 
         {buttonPositions.map((buttonPosition, index) => (
           <div
@@ -149,6 +159,6 @@ export default function MapSection() {
 
       </div>
 
-    </section>
+    </section >
   );
 }

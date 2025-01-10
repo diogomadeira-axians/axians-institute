@@ -14,6 +14,8 @@ enum Institutes {
   AIGermany = 'AIGermany',
   AINetherlands = 'AINetherlands',
   AIPortugal = 'AIPortugal',
+  AISpain = 'AISpain',
+  AISwitzerland = 'AISwitzerland',
   AIBrandTeam = 'AIBrandTeam',
 }
 
@@ -47,7 +49,9 @@ export default function MapSection() {
         { id: 'AIFrance', x: 31, y: 50 }, // Axians Institute - France coordinates
         { id: 'AIGermany', x: 47, y: 36 }, // Axians Institute - Germany coordinates
         { id: 'AINetherlands', x: 31, y: 31 }, // Axians Institute - Netherlands coordinates
-        { id: 'AIPortugal', x: 14, y: 69 }, // Axians Institute - Portugal coordinates
+        { id: 'AIPortugal', x: 8, y: 69 }, // Axians Institute - Portugal coordinates
+        { id: 'AISpain', x: 22, y: 65 }, // Axians Institute - Spain coordinates
+        { id: 'AISwitzerland', x: 47, y: 49 }, // Axians Institute - Switzerland coordinates
         { id: 'AIBrandTeam', x: 6, y: 43 }, // Axians Institute - Brand team coordinates,
       ];
 
@@ -112,6 +116,10 @@ export default function MapSection() {
         return <InstituteButton id={id} label={t('institutes.nl')} />;
       case 'AIPortugal':
         return <InstituteButton id={id} label={t('institutes.pt')} />;
+      case 'AISpain':
+        return <InstituteButton id={id} label={t('institutes.es')} />;
+      case 'AISwitzerland':
+        return <InstituteButton id={id} label={t('institutes.switzerland')} />;
       case 'AIBrandTeam':
         return <InstituteButton id={id} label={t('institutes.brandTeam')} />;
     }

@@ -22,6 +22,9 @@ export default {
 				"brand-common": {
 					'dark-grey': '#1B1E20',
 				},
+				"brand-accent": {
+					main: "#E6ECF0",
+				},
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {

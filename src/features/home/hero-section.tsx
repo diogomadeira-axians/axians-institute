@@ -6,16 +6,19 @@ import {
     CardContent,
 } from "@/components/ui/card"
 import Image from "next/image";
-import { MdComputer } from "react-icons/md";
+import { MdComputer, MdGroup } from "react-icons/md";
+import { JSX } from "react";
 
 const coursesTypes = ({
     title,
+    icon,
     description,
     image,
     href,
     hrefText
 }: {
     title: string,
+    icon: JSX.Element,
     description: string,
     image: string,
     href: string,
@@ -25,7 +28,7 @@ const coursesTypes = ({
         <div className="space-y-4 z-10">
             <div className="flex gap-2 items-center">
                 <div className="w-9 h-9 rounded-full border border-brand-primary-dark flex justify-center items-center">
-                    <MdComputer aria-hidden='true' size={18} className="text-brand-primary-dark" />
+                    {icon}
                 </div>
                 <h2 className="h2">{title}</h2>
             </div>
@@ -73,6 +76,7 @@ export default function HeroSection() {
                 <div className="grid grid-cols-2 gap-4 mt-6">
                     {coursesTypes({
                         title: "Remote courses",
+                        icon: <MdComputer aria-hidden='true' size={18} className="text-brand-primary-dark" />,
                         description: "Our remote courses platform connects learners all around the world.​ This collaborative space offers everyone the opportunity to acquire technical basics, improve skills in a certain expertise, strengthen competencies in innovative areas, share local knowledge and even review the security principles specific to Axians' activities.",
                         image: "/img/remote-courses.png",
                         href: "#",
@@ -80,6 +84,7 @@ export default function HeroSection() {
                     })}
                     {coursesTypes({
                         title: "In person courses",
+                        icon: <MdGroup aria-hidden='true' size={18} className="text-brand-primary-dark" />,
                         description: "Axians Institute training centers offer the opportunity to maintain acquired skills at the highest level on all subjects related to all of the Axians expertise. Each of the centers can draw on the strength of the network and benefit from the knowledge and skills held by another. They regularly share their respective approaches and pedagogical experiences with each other to enrich themselves mutually.​​",
                         image: "/img/in-person-courses.png",
                         href: "#",

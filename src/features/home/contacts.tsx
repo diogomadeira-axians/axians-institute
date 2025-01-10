@@ -1,3 +1,4 @@
+import ContactCard from "@/components/contactCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { MdGroup } from "react-icons/md";
 
@@ -18,6 +19,13 @@ export default function Contacts() {
                     <a href="#" className="font-medium text-brand-primary-main dark:text-brand-primary-dark hover:underline">Access all contacts</a>
                 </CardContent>
             </Card>
+
+            <div className="space-y-6">
+                {Array.from({ length: 3 }).map((_, index) => (
+                    <ContactCard key={index} />
+                ))}
+            </div>
+
         </section>
     )
 

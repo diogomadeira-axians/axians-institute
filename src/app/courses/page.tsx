@@ -3,12 +3,13 @@
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
+import CoursesFilter from "@/features/courses/filters";
 
 const fetchTrainings = async (
   page = 0,
   size = 0,
 ): Promise<{
-  // projects: Array<{ name: string; id: number }>
+  projects: Array<{ name: string; id: number }>
   hasMore: boolean
 }> => {
   const response = await fetch(`${process.env.API_BASE_URL}/rest/v1/trainings?networkId=${process.env.API_NETWORK_ID}&page=${page}&size=${size}`, {
@@ -44,6 +45,7 @@ export default function CoursesPage() {
 
   return (
     <div className="container mx-auto py-16 space-y-4">
+      <CoursesFilter />
       <div>
         <p>
           In this example, each page of data remains visible as the next page is
@@ -61,7 +63,7 @@ export default function CoursesPage() {
           // `data` will either resolve to the latest page's data
           // or if fetching a new page, the last successful page's data
           <div>
-            {data.projects.map((project) => (
+            {data.projects?.map((project) => (
               <p key={project.id}>{project.name}</p>
             ))}
           </div>

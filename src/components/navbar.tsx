@@ -7,7 +7,6 @@ import {
 import { Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { nanoid } from "nanoid";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -90,17 +89,17 @@ export const Navbar = () => {
 
 const landings = [
     {
-        id: nanoid(),
+        id: "Home" ,
         title: "Home",
         route: "/",
     },
     {
-        id: nanoid(),
+        id: "Courses",
         title: "Courses",
         route: "/courses",
     },
     {
-        id: nanoid(),
+        id: "Contacts",
         title: "Contacts",
         route: "/contacts",
     },

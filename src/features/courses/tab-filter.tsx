@@ -1,13 +1,21 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export default function TabFilter() {
-
+const TabFilter = ({
+    tabsList
+}: {
+    tabsList: Array<{ placeholder: string; value: string }>
+}) => {
     return (
-        <Tabs defaultValue="account" className="w-[400px]">
+        <Tabs defaultValue="account" className="w-60">
             <TabsList>
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
+                {tabsList.map(eachTab => 
+                    <span key={eachTab.value}>
+                        <TabsTrigger value={eachTab.value}>{eachTab.placeholder}</TabsTrigger>
+                    </span>
+                )}
             </TabsList>
         </Tabs>
     )
 }
+
+export default TabFilter;

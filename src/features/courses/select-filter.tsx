@@ -15,11 +15,14 @@ const SelectFilter = ({
 }) => {
     return (
         <Select>
-            <SelectTrigger className="w-60">
+            <SelectTrigger className="max-w-[384] border-brand-primary-dark">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>
-                {items.map(eachItem => <SelectItem value={eachItem.value} id={eachItem.value}>{eachItem.name}</SelectItem>)}
+                {items.map(eachItem => 
+                    <span key={eachItem.value}>
+                        <SelectItem value={eachItem.value} id={eachItem.value}>{eachItem.name}</SelectItem>
+                    </span>)}
             </SelectContent>
         </Select>
     )

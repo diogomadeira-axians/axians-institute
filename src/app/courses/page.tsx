@@ -12,7 +12,9 @@ const fetchTrainings = async (
   size = 0,
 ): Promise<{
   // trainings: Array<{ name: string; id: number }>
-  hasMore: boolean
+  hasMore: boolean;
+  data: Array<string>;
+  totalElements: number;
 }> => {
   const response = await fetch(`${process.env.API_BASE_URL}/rest/v1/trainings?networkId=${process.env.API_NETWORK_ID}&page=${page}&size=${size}&sort=lastUpdateDate,desc`, {
     headers: {
@@ -52,7 +54,7 @@ export default function CoursesPage() {
     <div className="container mx-auto py-16 space-y-4">
       <CoursesFilter />
       <div>
-        <p className="text-brand-primary-dark pb-8">{data.totalElements} Course(s) available</p>
+        <p className="text-brand-primary-dark pb-8">{data?.totalElements} Course(s) available</p>
         {status === 'pending' ? (
           <div>Loading...</div>
         ) : status === 'error' ? (
@@ -61,7 +63,7 @@ export default function CoursesPage() {
           // `data` will either resolve to the latest page's data
           // or if fetching a new page, the last successful page's data
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {data.data.map((training: Training, trainingIndex: number) => (
+            {/* {data.data.map((training: Training, trainingIndex: number) => (
               <TrainingCard
                 key={trainingIndex}
                 title={training?.title}
@@ -72,7 +74,7 @@ export default function CoursesPage() {
                 institute={training?.institute?.name}
                 href={training?.uri}
               />
-            ))}
+            ))} */}
           </div>
         )}
         <div>Current Page: {page + 1}</div>

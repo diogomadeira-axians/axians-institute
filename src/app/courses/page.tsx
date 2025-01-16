@@ -1,5 +1,7 @@
 "use client"
 
+import TrainingCard from "@/components/trainingCard";
+import { Training } from "@/types/training";
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
@@ -9,10 +11,10 @@ const fetchTrainings = async (
   page = 0,
   size = 0,
 ): Promise<{
-  projects: Array<{ name: string; id: number }>
+  // trainings: Array<{ name: string; id: number }>
   hasMore: boolean
 }> => {
-  const response = await fetch(`${process.env.API_BASE_URL}/rest/v1/trainings?networkId=${process.env.API_NETWORK_ID}&page=${page}&size=${size}`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/rest/v1/trainings?networkId=${process.env.API_NETWORK_ID}&page=${page}&size=${size}&sort=lastUpdateDate,desc`, {
     headers: {
       'client_id': process.env.API_CLIENT_ID || '',
       'client_secret': process.env.API_CLIENT_SECRET || '',
@@ -34,10 +36,13 @@ export default function CoursesPage() {
     staleTime: 5000,
   })
 
+  console.log("🚀 ~ CoursesPage ~ data:", data)
+
+
   useEffect(() => {
     if (!isPlaceholderData && data?.hasMore) {
       queryClient.prefetchQuery({
-        queryKey: ['projects', page + 1],
+        queryKey: ['trainings', page + 1],
         queryFn: () => fetchTrainings(page + 1),
       })
     }
@@ -47,14 +52,7 @@ export default function CoursesPage() {
     <div className="container mx-auto py-16 space-y-4">
       <CoursesFilter />
       <div>
-        <p>
-          In this example, each page of data remains visible as the next page is
-          fetched. The buttons and capability to proceed to the next page are also
-          supressed until the next page cursor is known. Each page is cached as a
-          normal query too, so when going to previous pages, you'll see them
-          instantaneously while they are also refetched invisibly in the
-          background.
-        </p>
+        <p className="text-brand-primary-dark pb-8">{data.totalElements} Course(s) available</p>
         {status === 'pending' ? (
           <div>Loading...</div>
         ) : status === 'error' ? (
@@ -62,9 +60,18 @@ export default function CoursesPage() {
         ) : (
           // `data` will either resolve to the latest page's data
           // or if fetching a new page, the last successful page's data
-          <div>
-            {data.projects?.map((project) => (
-              <p key={project.id}>{project.name}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {data.data.map((training: Training, trainingIndex: number) => (
+              <TrainingCard
+                key={trainingIndex}
+                title={training?.title}
+                modality={training?.modality}
+                defaultLanguage={training?.defaultLanguage}
+                duration={training?.duration}
+                description={training?.concernedFunction}
+                institute={training?.institute?.name}
+                href={training?.uri}
+              />
             ))}
           </div>
         )}

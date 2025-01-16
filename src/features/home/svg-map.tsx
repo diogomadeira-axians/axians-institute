@@ -177,9 +177,6 @@ export default function MapSection() {
             </div>
           ))}
         </div>
-
-
-
       </div>
 
     </section >

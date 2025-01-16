@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import SelectFilter from "@/features/courses/select-filter"
 
 export default function CoursesFilter() {
 
@@ -9,6 +10,10 @@ export default function CoursesFilter() {
                 <Input placeholder="Search all courses" />
                 <Button variant="link">Clear</Button>
                 <Button>Search</Button>
+            </div>
+
+            <div>
+                <SelectFilter placeholder="topic" items={[{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}]} />
             </div>
 
         </section>

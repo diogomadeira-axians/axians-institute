@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SelectFilter from "@/features/courses/select-filter"
+import TabFilter from "@/features/courses/tab-filter"
+
 
 export default function CoursesFilter() {
 
@@ -13,6 +15,7 @@ export default function CoursesFilter() {
             </div>
 
             <div>
+                <TabFilter />
                 <SelectFilter placeholder="topic" items={[{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}]} />
             </div>
 

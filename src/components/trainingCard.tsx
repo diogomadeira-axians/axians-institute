@@ -3,10 +3,12 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
-import { MdComputer, MdGroup, MdRecordVoiceOver, MdSchedule } from "react-icons/md";
+import { MdComputer, MdGroup, MdLocationOn, MdRecordVoiceOver, MdSchedule } from "react-icons/md";
 import { formatDuration } from "@/utils/duration";
+import Link from "next/link";
+import { Modality } from "@/types/training";
 
-const modalitySwitch = (modality: "Remote" | "Classroom") => {
+const modalitySwitch = (modality: Modality) => {
     switch (modality) {
         case 'Remote':
             return (
@@ -31,17 +33,28 @@ export default function TrainingCard({
     title,
     modality,
     defaultLanguage,
-    duration
+    duration,
+    description,
+    institute,
+    href
 }: {
     title: string
     modality: "Remote" | "Classroom",
     defaultLanguage: string,
-    duration: number
+    duration: number,
+    description: string,
+    institute: string,
+    href: string
 }) {
     return (
         <Card>
             <CardHeader className="space-y-3 mb-3">
-                <CardTitle className="mb-5">{title}</CardTitle>
+                <CardTitle className="mb-4">{title}</CardTitle>
+
+                <div className="flex items-center gap-1 text-brand-primary-main">
+                    <MdLocationOn aria-hidden='true' size={15} />
+                    <span className="text-xs">{institute}</span>
+                </div>
 
                 <div className="gap-2 flex">
                     <Badge variant="default">
@@ -56,7 +69,7 @@ export default function TrainingCard({
                 </div>
 
             </CardHeader>
-            <CardContent className="flex flex-col items-start space-y-3">
+            <CardContent className="flex flex-col items-start space-y-2">
                 <AspectRatio ratio={16 / 9}>
                     <Image
                         className='h-full w-full rounded-sm object-cover'
@@ -68,10 +81,15 @@ export default function TrainingCard({
                     />
                 </AspectRatio>
 
-                <p>This e-learning explains why Green+ is an useful tool to estimate the CO2 emissions of Axians projects, to identify the main sources and propose alternative solutions to our clients.</p>
+                <div dangerouslySetInnerHTML={{ __html: description }} />
 
-                <Button>Access</Button>
-                <a href="#" className="font-medium text-brand-primary-main dark:text-brand-primary-dark hover:underline">Contact our team</a>
+                <Button asChild>
+                    <Link href={href} target="_blank">
+                        Access
+                    </Link>
+                </Button>
+
+                <Button variant="link">Contact our team</Button>
             </CardContent>
         </Card>
     )

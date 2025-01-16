@@ -1,6 +1,7 @@
 "use client"
 
 import TrainingCard from "@/components/trainingCard";
+import { Training } from "@/types/training";
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
@@ -47,8 +48,9 @@ export default function CoursesPage() {
   }, [data, isPlaceholderData, page, queryClient])
 
   return (
-    <div className="container mx-auto py-16 space-y-4">
+    <div className="container mx-auto py-8 space-y-4">
       <div>
+        <p className="text-brand-primary-dark pb-8">{data.totalElements} Course(s) available</p>
         {status === 'pending' ? (
           <div>Loading...</div>
         ) : status === 'error' ? (
@@ -57,13 +59,16 @@ export default function CoursesPage() {
           // `data` will either resolve to the latest page's data
           // or if fetching a new page, the last successful page's data
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {data.data.map((training, trainingIndex) => (
+            {data.data.map((training: Training, trainingIndex: number) => (
               <TrainingCard
                 key={trainingIndex}
-                title={training.title}
-                modality={training.modality}
-                defaultLanguage={training.defaultLanguage}
-                duration={training.duration}
+                title={training?.title}
+                modality={training?.modality}
+                defaultLanguage={training?.defaultLanguage}
+                duration={training?.duration}
+                description={training?.concernedFunction}
+                institute={training?.institute?.name}
+                href={training?.uri}
               />
             ))}
           </div>

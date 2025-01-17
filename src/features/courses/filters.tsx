@@ -9,33 +9,13 @@ export default function CoursesFilter() {
     // Get window width to set initial filter state: if Mobile - false, if Desktop: true
     const [displayFilters, setDisplayFilters] = useState(window.innerWidth >= 640)
 
-    const selectFiltesList = [
-        { 
-            id:"country-institute",
-            placeholder:"Country institute",
-            items: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        },
-        { 
-            id:"language",
-            placeholder:"Language",
-            items: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        },
-        { 
-            id:"topic",
-            placeholder:"topic",
-            items: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        },
-        { 
-            id:"duration",
-            placeholder:"Duration",
-            items: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        },
-        { 
-            id:"training-path",
-            placeholder:"Training path",
-            items: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        }
-    ]
+    const filtesLists = {
+        country_institute: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
+        language: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
+        topic: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
+        duration: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
+        training_path: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
+    }
 
     return (
         <section className="space-y-4 z-10 relative mx-5 md:m-0">
@@ -50,7 +30,7 @@ export default function CoursesFilter() {
                     <TabFilter />
                     <Button
                         variant="outline"
-                        className="w-[50] sm:hidden bg-transparent border 
+                        className="w-[50] border border-brand-primary-dark sm:hidden bg-transparent 
                         data-[state=active]:bg-brand-primary-lighter hover:bg-brand-primary-lighter"
                         onClick={() => setDisplayFilters(!displayFilters)}
                     >
@@ -62,13 +42,15 @@ export default function CoursesFilter() {
                     </Button>
                 </div>
 
-                {displayFilters && selectFiltesList.map(eachSelectFilter => {
-                    return (
-                        <div key={eachSelectFilter.id}>
-                            <SelectFilter placeholder={eachSelectFilter.placeholder} items={eachSelectFilter.items} />
-                        </div>
-                    )
-                })}
+                {displayFilters && (
+                    <>
+                        <SelectFilter placeholder="Country institute" items={filtesLists.country_institute} />
+                        <SelectFilter placeholder="Language" items={filtesLists.language} />
+                        <SelectFilter placeholder="topic" items={filtesLists.topic} />
+                        <SelectFilter placeholder="Duration" items={filtesLists.duration} />
+                        <SelectFilter placeholder="Training path" items={filtesLists.training_path} />
+                    </>
+                )}
             </div>
 
         </section>

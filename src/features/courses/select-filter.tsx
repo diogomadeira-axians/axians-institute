@@ -15,7 +15,7 @@ const SelectFilter = ({
 }) => {
     return (
         <Select>
-            <SelectTrigger className="border-brand-primary-dark">
+            <SelectTrigger className="border-brand-primary-dark bg-transparent">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>

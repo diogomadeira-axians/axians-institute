@@ -6,7 +6,6 @@ import { useState } from "react";
 import { MdOutlineFilterAlt } from "react-icons/md";
 
 export default function CoursesFilter() {
-    // Get window width to set initial filter state: if Mobile - false, if Desktop: true
     const [displayFilters, setDisplayFilters] = useState(window.innerWidth >= 640)
 
     const filtesLists = {
@@ -20,7 +19,7 @@ export default function CoursesFilter() {
     return (
         <section className="space-y-4 z-10 relative mx-5 md:m-0">
             <div className="flex gap-2">
-                <Input placeholder="Search all courses" className="border-brand-primary-dark"/>
+                <Input placeholder="Search all courses" className="border-brand-primary-dark bg-transparent"/>
                 <Button variant="link" className="w-16">Clear</Button>
                 <Button>Search</Button>
             </div>

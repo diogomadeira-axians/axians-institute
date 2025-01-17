@@ -50,54 +50,59 @@ export default function CoursesPage() {
   }, [data, isPlaceholderData, page, queryClient])
 
   return (
-    <div className="container mx-auto py-8 space-y-4">
-      <CoursesFilter />
-      <div>
-        <p className="text-brand-primary-dark pb-8">{data?.totalElements} Course(s) available</p>
-        {status === 'pending' ? (
-          <div>Loading...</div>
-        ) : status === 'error' ? (
-          <div>Error: {error.message}</div>
-        ) : (
-          // `data` will either resolve to the latest page's data
-          // or if fetching a new page, the last successful page's data
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {/* {data?.data.map((training: Training, trainingIndex: number) => (
-              <TrainingCard
-                key={trainingIndex}
-                title={training?.title}
-                modality={training?.modality}
-                defaultLanguage={training?.defaultLanguage}
-                duration={training?.duration}
-                description={training?.concernedFunction}
-                institute={training?.institute?.name}
-                href={training?.uri}
-              />
-            ))} */}
-          </div>
-        )}
-        <div>Current Page: {page + 1}</div>
-        <button
-          onClick={() => setPage((old) => Math.max(old - 1, 0))}
-          disabled={page === 0}
-        >
-          Previous Page
-        </button>{' '}
-        <button
-          onClick={() => {
-            setPage((old) => (data?.hasMore ? old + 1 : old))
-          }}
-          disabled={isPlaceholderData || !data?.hasMore}
-        >
-          Next Page
-        </button>
-        {
-          // Since the last page's data potentially sticks around between page requests,
-          // we can use `isFetching` to show a background loading
-          // indicator since our `status === 'pending'` state won't be triggered
-          isFetching ? <span> Loading...</span> : null
-        }{' '}
-        <ReactQueryDevtools initialIsOpen />
+    <div>
+      <div className="bg-white shadow shadow-brand-accent-main pb-6 md:p-10 lg:px-20 py-10">
+        <CoursesFilter />
+      </div>
+      <div className="container mx-auto py-8 space-y-4">
+        
+        <div>
+          <p className="text-brand-primary-dark pb-8">{data?.totalElements} Course(s) available</p>
+          {status === 'pending' ? (
+            <div>Loading...</div>
+          ) : status === 'error' ? (
+            <div>Error: {error.message}</div>
+          ) : (
+            // `data` will either resolve to the latest page's data
+            // or if fetching a new page, the last successful page's data
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {data?.data.map((training: Training, trainingIndex: number) => (
+                <TrainingCard
+                  key={trainingIndex}
+                  title={training?.title}
+                  modality={training?.modality}
+                  defaultLanguage={training?.defaultLanguage}
+                  duration={training?.duration}
+                  description={training?.concernedFunction}
+                  institute={training?.institute?.name}
+                  href={training?.uri}
+                />
+              ))}
+            </div>
+          )}
+          <div>Current Page: {page + 1}</div>
+          <button
+            onClick={() => setPage((old) => Math.max(old - 1, 0))}
+            disabled={page === 0}
+          >
+            Previous Page
+          </button>{' '}
+          <button
+            onClick={() => {
+              setPage((old) => (data?.hasMore ? old + 1 : old))
+            }}
+            disabled={isPlaceholderData || !data?.hasMore}
+          >
+            Next Page
+          </button>
+          {
+            // Since the last page's data potentially sticks around between page requests,
+            // we can use `isFetching` to show a background loading
+            // indicator since our `status === 'pending'` state won't be triggered
+            isFetching ? <span> Loading...</span> : null
+          }{' '}
+          <ReactQueryDevtools initialIsOpen />
+        </div>
       </div>
     </div>
   );

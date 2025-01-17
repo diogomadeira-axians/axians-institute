@@ -9,7 +9,7 @@ const TabFilter = ({}: {}) => {
                 <TabsTrigger
                     value="all-courses"
                     className="border-r border-brand-primary-dark rounded-l rounded-r-none h-full w-full 
-                    data-[state=active]:bg-brand-primary-lighter font-semibold"
+                    data-[state=active]:bg-brand-primary-lighter font-semibold bg-transparent"
                 >
                     All courses
                 </TabsTrigger>
@@ -17,7 +17,7 @@ const TabFilter = ({}: {}) => {
                 <TabsTrigger
                     value="remote"
                     className="border-r border-brand-primary-dark rounded-none h-full w-full 
-                    data-[state=active]:bg-brand-primary-lighter font-semibold"
+                    data-[state=active]:bg-brand-primary-lighter font-semibold bg-transparent"
                 >
                     <MdComputer aria-hidden='true' size={18} className="text-brand-primary-dark mr-1" />
                     Remote
@@ -26,7 +26,7 @@ const TabFilter = ({}: {}) => {
                 <TabsTrigger
                     value="in-person"
                     className="border-r rounded-l-none h-full w-full
-                    data-[state=active]:bg-brand-primary-lighter font-semibold"
+                    data-[state=active]:bg-brand-primary-lighter font-semibold bg-transparent"
                 >
                     <MdGroup aria-hidden='true' size={18} className="text-brand-primary-dark mr-1" />
                         In person

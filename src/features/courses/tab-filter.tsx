@@ -1,26 +1,36 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { MdComputer, MdGroup } from "react-icons/md";
 
-const TabFilter = ({
-    tabsList
-}: {
-    tabsList: Array<{ placeholder: string; value: string }>
-}) => {
+const TabFilter = ({}: {}) => {
     return (
-        <Tabs defaultValue="account" className="max-w-[384]">
-            <TabsList className="grid grid-cols-3 p-0 h-10 bg-transparent border-brand-primary-dark border rounded w-full">
-                {tabsList.map(eachTab => 
-                    <span 
-                        key={eachTab.value} 
-                        className="text-center border-r border-brand-primary-dark last:border-0 h-full"
-                    >
-                        {
-                            //active pseudo-element is not working
-                        }
-                        <TabsTrigger value={eachTab.value} className="h-full w-full rounded active:bg-blue-100">
-                            {eachTab.placeholder}
-                        </TabsTrigger>
-                    </span>
-                )}
+        <Tabs defaultValue="account">
+            <TabsList className="grid grid-cols-3 p-0 h-10 bg-transparent border-brand-primary-dark border rounded 
+            w-full text-center text-brand-primary-dark">
+                <TabsTrigger
+                    value="all-courses"
+                    className="border-r border-brand-primary-dark rounded-l rounded-r-none h-full w-full 
+                    data-[state=active]:bg-brand-primary-lighter font-semibold"
+                >
+                    All courses
+                </TabsTrigger>
+
+                <TabsTrigger
+                    value="remote"
+                    className="border-r border-brand-primary-dark rounded-none h-full w-full 
+                    data-[state=active]:bg-brand-primary-lighter font-semibold"
+                >
+                    <MdComputer aria-hidden='true' size={18} className="text-brand-primary-dark mr-1" />
+                    Remote
+                </TabsTrigger>
+
+                <TabsTrigger
+                    value="in-person"
+                    className="border-r rounded-l-none h-full w-full
+                    data-[state=active]:bg-brand-primary-lighter font-semibold"
+                >
+                    <MdGroup aria-hidden='true' size={18} className="text-brand-primary-dark mr-1" />
+                        In person
+                </TabsTrigger>
             </TabsList>
         </Tabs>
     )

@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import SelectFilter from "@/features/courses/select-filter"
 import TabFilter from "@/features/courses/tab-filter"
 import { useState } from "react";
+import { MdOutlineFilterAlt } from "react-icons/md";
 
 export default function CoursesFilter() {
     // Get window width to set initial filter state: if Mobile - false, if Desktop: true
@@ -36,12 +37,6 @@ export default function CoursesFilter() {
         }
     ]
 
-    const tabsList = [
-        { value: "all-courses", placeholder: "All courses"},
-        { value: "remote", placeholder: "Remote"},
-        { value: "in-person", placeholder: "In person"},
-    ]
-
     return (
         <section className="space-y-4 z-10 relative mx-5 md:m-0">
             <div className="flex gap-2">
@@ -50,18 +45,27 @@ export default function CoursesFilter() {
                 <Button>Search</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="flex justify-between gap-5 md:block">
-                    <TabFilter tabsList={tabsList} />
-                    { window.innerWidth <= 640 && 
-                        <Button className="w-1 md:hidden" onClick={() => setDisplayFilters(!displayFilters)}>X</Button>
-                    }
+                    <TabFilter />
+                    <Button
+                        variant="outline"
+                        className="w-[50] sm:hidden bg-transparent border 
+                        data-[state=active]:bg-brand-primary-lighter hover:bg-brand-primary-lighter"
+                        onClick={() => setDisplayFilters(!displayFilters)}
+                    >
+                        <MdOutlineFilterAlt
+                            aria-hidden='true'
+                            size={18}
+                            className="text-brand-primary-dark"
+                        />
+                    </Button>
                 </div>
 
                 {displayFilters && selectFiltesList.map(eachSelectFilter => {
                     return (
                         <div key={eachSelectFilter.id}>
-                            <SelectFilter placeholder={eachSelectFilter.placeholder} items={eachSelectFilter.items} /> 
+                            <SelectFilter placeholder={eachSelectFilter.placeholder} items={eachSelectFilter.items} />
                         </div>
                     )
                 })}

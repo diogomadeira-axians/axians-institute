@@ -62,7 +62,7 @@ export default function CoursesPage() {
           // `data` will either resolve to the latest page's data
           // or if fetching a new page, the last successful page's data
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {data.data.map((training: Training, trainingIndex: number) => (
+            {/* {data?.data.map((training: Training, trainingIndex: number) => (
               <TrainingCard
                 key={trainingIndex}
                 title={training?.title}
@@ -73,7 +73,7 @@ export default function CoursesPage() {
                 institute={training?.institute?.name}
                 href={training?.uri}
               />
-            ))}
+            ))} */}
           </div>
         )}
         <div>Current Page: {page + 1}</div>

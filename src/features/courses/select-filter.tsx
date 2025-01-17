@@ -15,7 +15,7 @@ const SelectFilter = ({
 }) => {
     return (
         <Select>
-            <SelectTrigger className="max-w-[384] border-brand-primary-dark">
+            <SelectTrigger className="border-brand-primary-dark">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>

@@ -43,7 +43,7 @@ export const Navbar = () => {
                             <DropdownMenuContent align="start">
                                 {landings.map((page) => (
                                     <DropdownMenuItem key={page.id}>
-                                        <Link href={page.route}>{page.title}</Link>
+                                        <Link href={page?.route}>{page.title}</Link>
                                     </DropdownMenuItem>
                                 ))}
                             </DropdownMenuContent>

@@ -23,8 +23,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     return (
         <ErrorBoundary FallbackComponent={MainErrorFallback}>
             <QueryClientProvider client={queryClient}>
-                {process.env.DEV && <ReactQueryDevtools />}
                 {children}
+                {process.env.NODE_ENV === "development" && <ReactQueryDevtools initialIsOpen={false} />}
             </QueryClientProvider>
         </ErrorBoundary>
     );

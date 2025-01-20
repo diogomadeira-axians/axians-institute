@@ -57,7 +57,7 @@ export default function TrainingCard({
             <div className="h-full flex flex-col justify-between">
                 <div>
                     <CardHeader className="space-y-3 mb-3">
-                        <CardTitle className="mb-4">{title}</CardTitle>
+                        <CardTitle className="min-h-14">{title}</CardTitle>
 
                         <div className="flex items-center gap-1 text-brand-primary-main">
                             <MdLocationOn aria-hidden='true' size={15} />

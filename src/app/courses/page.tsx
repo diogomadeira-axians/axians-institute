@@ -1,6 +1,7 @@
 "use client"
 
 import TrainingCard from "@/components/trainingCard";
+import CoursesFilter from "@/features/courses/filters";
 import { Training } from "@/types/training";
 import { keepPreviousData, useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -11,8 +12,9 @@ const fetchTrainings = async (
   page = 0,
   size = 0,
 ): Promise<{
-  // trainings: Array<{ name: string; id: number }>
-  hasMore: boolean
+  trainings: Array<{ name: string; id: number }>
+  hasMore: boolean;
+  totalElements: number;
 }> => {
   const response = await fetch(`${process.env.API_BASE_URL}/rest/v1/trainings?networkId=${process.env.API_NETWORK_ID}&page=${page}&size=${size}&sort=lastUpdateDate,desc`, {
     headers: {
@@ -70,57 +72,62 @@ export default function CoursesPage() {
   // }, [data, isPlaceholderData, page, queryClient])
 
   return (
-    <div className="container mx-auto py-8 space-y-4">
-      <div>
-        <p className="text-brand-primary-dark pb-8">{data?.pages[0].totalElements} Course(s) available</p>
-        {status === 'pending' ? (
-          <div>Loading 1 ...</div>
-        ) : status === 'error' ? (
-          <div>Error: {error.message}</div>
-        ) : (
-          // `data` will either resolve to the latest page's data
-          // or if fetching a new page, the last successful page's data
-          <InfiniteScroll
-            dataLength={data?.pages[0].totalElements}
-            next={fetchNextPage}
-            hasMore={true}
-            loader={<h4>Loading 2...</h4>}
-            endMessage={
-              <p style={{ textAlign: 'center' }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
-          // below props only if you need pull down functionality
-          // refreshFunction={refetch}
-          // pullDownToRefresh
-          // pullDownToRefreshThreshold={50}
-          // pullDownToRefreshContent={
-          //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
-          // }
-          // releaseToRefreshContent={
-          //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-          // }
-          // className=""
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {data && data?.pages && data.pages.length > 0 ? data.pages[0].data.map((training: Training, trainingIndex: number) => (
-                <TrainingCard
-                  key={trainingIndex}
-                  title={training?.title}
-                  modality={training?.modality}
-                  defaultLanguage={training?.defaultLanguage}
-                  duration={training?.duration}
-                  description={training?.concernedFunction}
-                  institute={training?.institute?.name}
-                  href={training?.uri}
-                />
-              )) :
-                <p>no results</p>}
-            </div>
-          </InfiniteScroll>
-        )}
+    <div>
+      <div className="bg-white shadow shadow-brand-accent-main pb-6 md:p-10 lg:px-20 py-10">
+        <CoursesFilter />
+      </div>
+      <div className="container mx-auto py-8 space-y-4">
+        <div>
+          <p className="text-brand-primary-dark pb-8">{data?.pages[0].totalElements} Course(s) available</p>
+          {status === 'pending' ? (
+            <div>Loading 1 ...</div>
+          ) : status === 'error' ? (
+            <div>Error: {error.message}</div>
+          ) : (
+            // `data` will either resolve to the latest page's data
+            // or if fetching a new page, the last successful page's data
+            <InfiniteScroll
+              dataLength={data?.pages[0].totalElements}
+              next={fetchNextPage}
+              hasMore={true}
+              loader={<h4>Loading 2...</h4>}
+              endMessage={
+                <p style={{ textAlign: 'center' }}>
+                  <b>Yay! You have seen it all</b>
+                </p>
+              }
+            // below props only if you need pull down functionality
+            // refreshFunction={refetch}
+            // pullDownToRefresh
+            // pullDownToRefreshThreshold={50}
+            // pullDownToRefreshContent={
+            //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+            // }
+            // releaseToRefreshContent={
+            //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+            // }
+            // className=""
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {data && data?.pages && data.pages.length > 0 ? data.pages[0].data.map((training: Training, trainingIndex: number) => (
+                  <TrainingCard
+                    key={trainingIndex}
+                    title={training?.title}
+                    modality={training?.modality}
+                    defaultLanguage={training?.defaultLanguage}
+                    duration={training?.duration}
+                    description={training?.concernedFunction}
+                    institute={training?.institute?.name}
+                    href={training?.uri}
+                  />
+                )) :
+                  <p>no results</p>}
+              </div>
+            </InfiniteScroll>
+          )}
 
-        {isFetching ? <span> Loading...</span> : null}
+          {isFetching ? <span> Loading...</span> : null}
+        </div>
       </div>
     </div>
   );

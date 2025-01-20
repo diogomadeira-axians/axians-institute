@@ -7,6 +7,7 @@ import { MdComputer, MdGroup, MdLocationOn, MdRecordVoiceOver, MdSchedule } from
 import { formatDuration } from "@/utils/duration";
 import Link from "next/link";
 import { Modality } from "@/types/training";
+import { useState } from "react";
 
 const modalitySwitch = (modality: Modality) => {
     switch (modality) {
@@ -36,7 +37,8 @@ export default function TrainingCard({
     duration,
     description,
     institute,
-    href
+    href,
+    image
 }: {
     title: string
     modality: "Remote" | "Classroom",
@@ -44,8 +46,12 @@ export default function TrainingCard({
     duration: number,
     description: string,
     institute: string,
-    href: string
+    href: string,
+    image: string
 }) {
+
+    const [imgSrc, setImgSrc] = useState(image);
+
     return (
         <Card>
             <div className="h-full flex flex-col justify-between">
@@ -75,11 +81,14 @@ export default function TrainingCard({
                         <AspectRatio ratio={16 / 9}>
                             <Image
                                 className='h-full w-full rounded-sm object-cover'
-                                src="/img/remote-courses.png"
+                                src={imgSrc}
                                 alt="img"
                                 width={0}
                                 height={0}
                                 sizes="100vw"
+                                onError={() => {
+                                    setImgSrc("/img/vignette_default.png");
+                                }}
                             />
                         </AspectRatio>
 

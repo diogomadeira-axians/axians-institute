@@ -6,20 +6,20 @@ import { useState } from "react";
 import { MdOutlineFilterAlt } from "react-icons/md";
 
 export default function CoursesFilter() {
-    const [displayFilters, setDisplayFilters] = useState(window.innerWidth >= 640)
+    const [displayFilters, setDisplayFilters] = useState(true)
 
-    const filtesLists = {
-        country_institute: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        language: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        topic: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        duration: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
-        training_path: [{name: "Value 1", value: "Value 1"}, {name: "Value 2", value: "Value 2"}],
+    const filtersLists = {
+        country_institute: [{ name: "Value 1", value: "Value 1" }, { name: "Value 2", value: "Value 2" }],
+        language: [{ name: "Value 1", value: "Value 1" }, { name: "Value 2", value: "Value 2" }],
+        topic: [{ name: "Value 1", value: "Value 1" }, { name: "Value 2", value: "Value 2" }],
+        duration: [{ name: "Value 1", value: "Value 1" }, { name: "Value 2", value: "Value 2" }],
+        training_path: [{ name: "Value 1", value: "Value 1" }, { name: "Value 2", value: "Value 2" }],
     }
 
     return (
-        <section className="space-y-4 z-10 relative mx-5 md:m-0">
+        <section className="space-y-4 container mx-auto">
             <div className="flex gap-2">
-                <Input placeholder="Search all courses" className="border-brand-primary-dark bg-transparent"/>
+                <Input placeholder="Search all courses" className="border-brand-primary-dark bg-transparent" />
                 <Button variant="link" className="w-16">Clear</Button>
                 <Button>Search</Button>
             </div>
@@ -41,15 +41,11 @@ export default function CoursesFilter() {
                     </Button>
                 </div>
 
-                {displayFilters && (
-                    <>
-                        <SelectFilter placeholder="Country institute" items={filtesLists.country_institute} />
-                        <SelectFilter placeholder="Language" items={filtesLists.language} />
-                        <SelectFilter placeholder="topic" items={filtesLists.topic} />
-                        <SelectFilter placeholder="Duration" items={filtesLists.duration} />
-                        <SelectFilter placeholder="Training path" items={filtesLists.training_path} />
-                    </>
-                )}
+                <SelectFilter placeholder="Country institute" items={filtersLists.country_institute} displayFilters={displayFilters} />
+                <SelectFilter placeholder="Language" items={filtersLists.language} displayFilters={displayFilters} />
+                <SelectFilter placeholder="topic" items={filtersLists.topic} displayFilters={displayFilters} />
+                <SelectFilter placeholder="Duration" items={filtersLists.duration} displayFilters={displayFilters} />
+                <SelectFilter placeholder="Training path" items={filtersLists.training_path} displayFilters={displayFilters} />
             </div>
 
         </section>

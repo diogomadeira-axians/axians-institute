@@ -1,12 +1,11 @@
 "use client"
 
+import { InfiniteScroll } from "@/components/infinite-scroll";
 import TrainingCard from "@/components/trainingCard";
 import CoursesFilter from "@/features/courses/filters";
 import { Training } from "@/types/training";
-import { keepPreviousData, useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 const fetchTrainings = async (
   page = 0,
@@ -16,6 +15,7 @@ const fetchTrainings = async (
   hasMore: boolean;
   totalElements: number;
 }> => {
+  console.log("🚀 ~ fetchTrainings ~ page", page)
   const response = await fetch(`${process.env.API_BASE_URL}/rest/v1/trainings?networkId=${process.env.API_NETWORK_ID}&page=${page}&size=${size}&sort=lastUpdateDate,desc`, {
     headers: {
       'client_id': process.env.API_CLIENT_ID || '',
@@ -54,13 +54,13 @@ export default function CoursesPage() {
     initialPageParam: 1,
     // getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
     getNextPageParam: (lastPage, allPages) => {
-      console.log("🚀 ~ CoursesPage ~ lastPage:", lastPage)
+      // console.log("🚀 ~ CoursesPage ~ lastPage:", lastPage)
       return lastPage.currentPage + 1;
     },
   })
 
-  console.log("🚀 ~ CoursesPage ~ data:", data)
 
+  console.log("🚀 ~ CoursesPage ~ data:", data)
 
   // useEffect(() => {
   //   if (!isPlaceholderData && data?.hasMore) {
@@ -73,7 +73,7 @@ export default function CoursesPage() {
 
   return (
     <div>
-      <div className="bg-white shadow shadow-brand-accent-main pb-6 md:p-10 lg:px-20 py-10">
+      <div className="bg-white shadow shadow-brand-accent-main py-4">
         <CoursesFilter />
       </div>
       <div className="container mx-auto py-8 space-y-4">
@@ -87,41 +87,44 @@ export default function CoursesPage() {
             // `data` will either resolve to the latest page's data
             // or if fetching a new page, the last successful page's data
             <InfiniteScroll
-              dataLength={data?.pages[0].totalElements}
-              next={fetchNextPage}
-              hasMore={true}
+              hasMore={hasNextPage}
+              load={fetchNextPage}
               loader={<h4>Loading 2...</h4>}
               endMessage={
                 <p style={{ textAlign: 'center' }}>
                   <b>Yay! You have seen it all</b>
                 </p>
               }
-            // below props only if you need pull down functionality
-            // refreshFunction={refetch}
-            // pullDownToRefresh
-            // pullDownToRefreshThreshold={50}
-            // pullDownToRefreshContent={
-            //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+
+            // dataLength={data?.pages[0].totalElements}
+            // next={fetchNextPage}
+            // hasMore={true}
+            // loader={<h4>Loading 2...</h4>}
+            // endMessage={
+            //   <p style={{ textAlign: 'center' }}>
+            //     <b>Yay! You have seen it all</b>
+            //   </p>
             // }
-            // releaseToRefreshContent={
-            //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-            // }
-            // className=""
+            // style={{ overflowY: 'hidden' }}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {data && data?.pages && data.pages.length > 0 ? data.pages[0].data.map((training: Training, trainingIndex: number) => (
-                  <TrainingCard
-                    key={trainingIndex}
-                    title={training?.title}
-                    modality={training?.modality}
-                    defaultLanguage={training?.defaultLanguage}
-                    duration={training?.duration}
-                    description={training?.concernedFunction}
-                    institute={training?.institute?.name}
-                    href={training?.uri}
-                  />
-                )) :
-                  <p>no results</p>}
+                {data && data?.pages && data.pages.length > 0 ?
+
+                  (data.pages.map((page, pageIndex) => (
+                    page.data.map((training: Training, trainingIndex: number) => (
+                      <TrainingCard
+                        key={trainingIndex}
+                        title={training?.title}
+                        modality={training?.modality}
+                        defaultLanguage={training?.defaultLanguage}
+                        duration={training?.duration}
+                        description={training?.concernedFunction}
+                        institute={training?.institute?.name}
+                        href={training?.uri}
+                        image={training?.image}
+                      />
+                    ))
+                  ))) : <p>no results</p>}
               </div>
             </InfiniteScroll>
           )}
@@ -132,3 +135,4 @@ export default function CoursesPage() {
     </div>
   );
 }
+

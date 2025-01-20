@@ -9,7 +9,7 @@ export const formatDuration = (durationInHours: number) => {
     }
 
     if (minutes > 0 || hours === 0) {
-        formattedDuration += `${minutes}M`;
+        formattedDuration += `${minutes}m`;
     }
 
     return formattedDuration;
